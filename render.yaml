@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: tetris-royale-api
+    runtime: docker
+    plan: free
+    autoDeploy: false
+    healthCheckPath: /healthz
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: ALLOWED_ORIGIN
+        value: "*"
