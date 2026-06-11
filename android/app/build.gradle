@@ -4,9 +4,15 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
-    namespace "com.tetrisroyale.app"
-    compileSdk flutter.compileSdkVersion
+    namespace "com.tetris.royale"
+    compileSdk 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -19,11 +25,28 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.tetrisroyale.app"
+        applicationId "com.tetris.royale"
         minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 35
         versionCode flutter.versionCode
         versionName flutter.versionName
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                storeFile rootProject.file(keystoreProperties["storeFile"])
+                storePassword keystoreProperties["storePassword"]
+                keyAlias keystoreProperties["keyAlias"]
+                keyPassword keystoreProperties["keyPassword"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig keystorePropertiesFile.exists() ? signingConfigs.release : signingConfigs.debug
+        }
     }
 }
 

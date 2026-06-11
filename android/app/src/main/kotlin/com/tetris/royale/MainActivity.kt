@@ -1,4 +1,4 @@
-package com.tetrisroyale.app
+package com.tetris.royale
 
 import io.flutter.embedding.android.FlutterActivity
 

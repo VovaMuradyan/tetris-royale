@@ -68,6 +68,21 @@ wss://<your-render-service>.onrender.com/ws
 flutter build appbundle --release --dart-define=GAME_WS_URL=wss://<your-render-service>.onrender.com/ws
 ```
 
+Signed output:
+
+```text
+build/app/outputs/bundle/release/app-release.aab
+```
+
+Before Play submission, make sure you have:
+
+1. A public privacy policy URL.
+2. A completed Data safety form that matches the app's real Firebase and network usage.
+3. Play App Signing enabled in Play Console.
+4. A store listing with screenshots, icon, feature graphic, and content rating answers.
+5. Internal testing uploaded first, then production after review.
+6. The package name `com.tetris.royale` kept consistent everywhere.
+
 Если локальный Flutter SDK попросит восстановить Android scaffold, выполни один раз:
 
 ```powershell
